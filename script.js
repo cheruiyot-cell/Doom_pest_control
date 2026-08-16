@@ -70,11 +70,18 @@ const params = new URLSearchParams(window.location.search);
 const service = params.get('service');
 const pestSelect = document.getElementById('pest');
 if (pestSelect && service) {
-    const map = { cockroaches: 'Cockroaches', rats: 'Rats & Mice', bedbugs: 'Bedbugs', termites: 'Termites', mosquitoes: 'Mosquitoes', ants: 'Ants / Other' };
+    const map = { 
+        cockroaches: 'Cockroaches', 
+        rats: 'Rats', 
+        bedbugs: 'Bedbugs', 
+        termites: 'Termites', 
+        mosquitoes: 'Mosquitoes', 
+        ants: 'Ants / Other' 
+    };
     if (map[service]) pestSelect.value = map[service];
 }
 
-// ===== FIXED: Booking Form (Sends to WhatsApp) =====
+// ===== Booking Form (Sends to WhatsApp) =====
 const bookingForm = document.getElementById('bookingForm');
 const formSuccess = document.getElementById('formSuccess');
 

@@ -534,7 +534,7 @@ h1, h2, h3, h4 {
 
 .areas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
     margin-bottom: 30px;
 }
@@ -736,15 +736,6 @@ h1, h2, h3, h4 {
     color: #aaa;
 }
 
-.floating-whatsapp:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-
-.floating-whatsapp svg {
-    fill: white;
-}
-
 /* ===== Mobile Sticky CTA ===== */
 .mobile-cta {
     display: none;
@@ -922,9 +913,6 @@ h1, h2, h3, h4 {
     }
     .mobile-cta {
         display: flex;
-    }
-    .floating-whatsapp {
-        bottom: 80px;
     }
     .scroll-top {
         bottom: 140px;
