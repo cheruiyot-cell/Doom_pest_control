@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Inline fallback styles for Calendly loading indicator */
     .calendly-loading {
       text-align: center;
       padding: 40px 20px;
@@ -37,7 +36,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
       <a href="index.html" class="logo">DOOM<span> Pest Control</span></a>
-      <nav class="main-nav" id="mainNav">
+      <nav class="main-nav" id="mainNav" aria-hidden="true">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="services.html">Services</a></li>
@@ -50,7 +49,7 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <button class="dark-toggle" id="darkToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+        <button class="dark-toggle" id="darkToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">🌙</button>
         <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainNav">
           <span></span><span></span><span></span>
         </button>
@@ -148,22 +147,18 @@
       </div>
     </section>
 
-    <!-- Calendly Booking Section (no reveal) -->
     <section class="section calendly-section">
       <div class="container">
         <div class="calendly-widget">
           <h3>Book an Appointment Directly</h3>
           <p>Pick a date and time that works for you – no phone call needed.</p>
 
-          <!-- Loading indicator (will be hidden by JS when iframe loads) -->
           <div id="calendly-loading" class="calendly-loading">
             <p>Loading booking calendar…</p>
           </div>
 
-          <!-- Calendly inline widget -->
           <div class="calendly-inline-widget" data-url="https://calendly.com/harrisoncheruiyot04/30min" style="min-width:320px;"></div>
 
-          <!-- Fallback link in case the calendar fails to load -->
           <p class="calendly-fallback">
             If the calendar doesn't load, <a href="https://wa.me/254702555093?text=Hello%2C%20I%20want%20to%20book%20an%20appointment%20but%20the%20calendar%20isn%27t%20loading." target="_blank">book via WhatsApp</a>.
           </p>
@@ -196,7 +191,7 @@
       </div>
     </div>
     <div class="container copyright">
-      <p>&copy; 2025 DOOM Pest Control. All rights reserved.</p>
+      <p>&copy; 2026 DOOM Pest Control. All rights reserved.</p>
     </div>
   </footer>
 
@@ -211,7 +206,6 @@
     <a href="tel:+254702555093">🚨 24/7 Emergency Call</a>
   </div>
 
-  <!-- Calendly script placed at the end of body -->
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <script src="script.js"></script>
 </body>

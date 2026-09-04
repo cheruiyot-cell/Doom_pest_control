@@ -3,16 +3,18 @@ const scrollProgress = document.getElementById('scrollProgress');
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  scrollProgress.style.width = (scrollTop / docHeight * 100) + '%';
+  const progress = docHeight > 0 ? (scrollTop / docHeight * 100) : 0;
+  scrollProgress.style.width = progress + '%';
 });
 
 // ===== Mobile Menu =====
 const mobileToggle = document.getElementById('mobileToggle');
 const mainNav = document.getElementById('mainNav');
-if (mobileToggle) {
+if (mobileToggle && mainNav) {
   mobileToggle.addEventListener('click', () => {
     const isOpen = mainNav.classList.toggle('open');
     mobileToggle.setAttribute('aria-expanded', isOpen);
+    mainNav.setAttribute('aria-hidden', !isOpen);
     mobileToggle.classList.toggle('active', isOpen);
   });
 }
@@ -20,14 +22,24 @@ if (mobileToggle) {
 // ===== Dark Mode =====
 const darkToggle = document.getElementById('darkToggle');
 if (darkToggle) {
-  if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
+  const applyDarkMode = (isDark) => {
+    document.body.classList.toggle('dark', isDark);
+    darkToggle.setAttribute('aria-pressed', isDark);
+    localStorage.setItem('darkMode', isDark);
+  };
+
+  if (localStorage.getItem('darkMode') === 'true') {
+    applyDarkMode(true);
+  } else {
+    darkToggle.setAttribute('aria-pressed', 'false');
+  }
+
   darkToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    applyDarkMode(!document.body.classList.contains('dark'));
   });
 }
 
-// ===== FAQ Accordion (if present on other pages) =====
+// ===== FAQ Accordion =====
 document.querySelectorAll('.faq-question').forEach(question => {
   question.addEventListener('click', () => {
     const faqItem = question.parentElement;
@@ -55,7 +67,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== Swiper (only if present) =====
+// ===== Swiper =====
 if (typeof Swiper !== 'undefined') {
   new Swiper('.testimonial-swiper', {
     loop: true,
@@ -83,7 +95,7 @@ if (pestSelect && service) {
   if (map[service]) pestSelect.value = map[service];
 }
 
-// ===== Booking Form (Sends to WhatsApp) =====
+// ===== Booking Form =====
 const bookingForm = document.getElementById('bookingForm');
 const formSuccess = document.getElementById('formSuccess');
 
@@ -99,13 +111,11 @@ if (bookingForm) {
     const date = document.getElementById('date').value;
     const message = document.getElementById('message').value.trim();
 
-    // Basic validation
     if (!name || !phone || !estate || !pest) {
       alert('Please fill in all required fields.');
       return;
     }
 
-    // Build WhatsApp message
     let waMessage = `Hello DOOM Pest Control!%0A%0A`;
     waMessage += `*Name:* ${encodeURIComponent(name)}%0A`;
     waMessage += `*Phone:* ${encodeURIComponent(phone)}%0A`;
@@ -117,11 +127,9 @@ if (bookingForm) {
 
     const waUrl = `https://wa.me/254702555093?text=${waMessage}`;
 
-    // Hide form and show success message
     bookingForm.style.display = 'none';
     formSuccess.style.display = 'block';
 
-    // Open WhatsApp in a new tab
     window.open(waUrl, '_blank');
   });
 }
@@ -135,7 +143,7 @@ if (scrollTopBtn) {
   scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-// ===== Quote Calculator (Pricing Page) =====
+// ===== Quote Calculator =====
 function calculateQuote() {
   const pest = document.getElementById('calc-pest').value;
   const size = document.getElementById('calc-size').value;
@@ -154,25 +162,28 @@ const calendlyWidget = document.querySelector('.calendly-inline-widget');
 const calendlyLoading = document.getElementById('calendly-loading');
 
 if (calendlyWidget && calendlyLoading) {
-  // Use MutationObserver to detect when the iframe is injected
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.addedNodes.length > 0) {
-        // Check if an iframe exists inside the widget
-        if (calendlyWidget.querySelector('iframe')) {
-          calendlyLoading.style.display = 'none';
-          observer.disconnect();
+  // Immediately hide loading if iframe already exists
+  if (calendlyWidget.querySelector('iframe')) {
+    calendlyLoading.style.display = 'none';
+  } else {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length > 0) {
+          if (calendlyWidget.querySelector('iframe')) {
+            calendlyLoading.style.display = 'none';
+            observer.disconnect();
+          }
         }
-      }
+      });
     });
-  });
 
-  observer.observe(calendlyWidget, { childList: true, subtree: true });
+    observer.observe(calendlyWidget, { childList: true, subtree: true });
+  }
 
-  // Fallback: hide loading after 10 seconds even if iframe is not detected
+  // Fallback: show helpful message after 10 seconds if iframe still missing
   setTimeout(() => {
     if (!calendlyWidget.querySelector('iframe')) {
-      calendlyLoading.innerHTML = '<p>The booking calendar could not load. Please use the WhatsApp link below.</p>';
+      calendlyLoading.innerHTML = '<p>The booking calendar could not load. Please use the WhatsApp link below or <a href="https://calendly.com/harrisoncheruiyot04/30min" target="_blank" rel="noopener">open the calendar directly</a>.</p>';
     }
   }, 10000);
 }
