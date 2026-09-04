@@ -178,12 +178,10 @@ if (calendlyWidget && calendlyLoading) {
     });
 
     observer.observe(calendlyWidget, { childList: true, subtree: true });
-  }
 
-  // Fallback: show helpful message after 10 seconds if iframe still missing
-  setTimeout(() => {
-    if (!calendlyWidget.querySelector('iframe')) {
-      calendlyLoading.innerHTML = '<p>The booking calendar could not load. Please use the WhatsApp link below or <a href="https://calendly.com/harrisoncheruiyot04/30min" target="_blank" rel="noopener">open the calendar directly</a>.</p>';
-    }
-  }, 10000);
+    // Safety fallback: hide after 5 seconds regardless
+    setTimeout(() => {
+      calendlyLoading.style.display = 'none';
+    }, 5000);
+  }
 }
