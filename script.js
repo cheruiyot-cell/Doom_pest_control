@@ -10,12 +10,38 @@ window.addEventListener('scroll', () => {
 // ===== Mobile Menu =====
 const mobileToggle = document.getElementById('mobileToggle');
 const mainNav = document.getElementById('mainNav');
+
+function closeMenu() {
+  mainNav.classList.remove('open');
+  mobileToggle.classList.remove('active');
+  mobileToggle.setAttribute('aria-expanded', 'false');
+  mainNav.setAttribute('aria-hidden', 'true');
+}
+
 if (mobileToggle && mainNav) {
-  mobileToggle.addEventListener('click', () => {
+  // Toggle menu on button click
+  mobileToggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent immediate close when clicking the button
     const isOpen = mainNav.classList.toggle('open');
     mobileToggle.setAttribute('aria-expanded', isOpen);
     mainNav.setAttribute('aria-hidden', !isOpen);
     mobileToggle.classList.toggle('active', isOpen);
+  });
+
+  // Close menu when clicking outside the navigation and the toggle button
+  document.addEventListener('click', (e) => {
+    if (mainNav.classList.contains('open')) {
+      if (!mainNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+        closeMenu();
+      }
+    }
+  });
+
+  // Close menu when clicking a navigation link (smooth scroll, etc.)
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
   });
 }
 
