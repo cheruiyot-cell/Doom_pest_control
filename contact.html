@@ -5,10 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact & Book | DOOM Pest Control Nairobi</title>
   <meta name="description" content="Book a pest control inspection in Nairobi. Get a free quote. Call, WhatsApp, or use our online form or calendar.">
+  <meta name="theme-color" content="#1a1a1a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Inline fallback styles for Calendly loading indicator */
+    .calendly-loading {
+      text-align: center;
+      padding: 40px 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+    body.dark .calendly-loading {
+      background: #1e1e1e;
+      color: #fff;
+    }
+    .calendly-inline-widget {
+      min-height: 700px;
+    }
+    .calendly-fallback {
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -49,14 +70,14 @@
       <div class="container contact-grid reveal">
         <div class="contact-form">
           <h2>Request a Free Quote</h2>
-          <form id="bookingForm">
+          <form id="bookingForm" novalidate>
             <div class="form-group">
               <label for="name">Full Name *</label>
               <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
               <label for="phone">Phone / WhatsApp *</label>
-              <input type="tel" id="phone" name="phone" required>
+              <input type="tel" id="phone" name="phone" required pattern="[+0-9\s\-()]{7,15}">
             </div>
             <div class="form-group">
               <label for="estate">Neighbourhood / Estate *</label>
@@ -127,14 +148,25 @@
       </div>
     </section>
 
-    <!-- Calendly Booking -->
+    <!-- Calendly Booking Section (no reveal) -->
     <section class="section calendly-section">
-      <div class="container reveal">
+      <div class="container">
         <div class="calendly-widget">
           <h3>Book an Appointment Directly</h3>
           <p>Pick a date and time that works for you – no phone call needed.</p>
-          <div class="calendly-inline-widget" data-url="https://calendly.com/harrisoncheruiyot04/30min" style="min-width:320px;height:700px;"></div>
-          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+          <!-- Loading indicator (will be hidden by JS when iframe loads) -->
+          <div id="calendly-loading" class="calendly-loading">
+            <p>Loading booking calendar…</p>
+          </div>
+
+          <!-- Calendly inline widget -->
+          <div class="calendly-inline-widget" data-url="https://calendly.com/harrisoncheruiyot04/30min" style="min-width:320px;"></div>
+
+          <!-- Fallback link in case the calendar fails to load -->
+          <p class="calendly-fallback">
+            If the calendar doesn't load, <a href="https://wa.me/254702555093?text=Hello%2C%20I%20want%20to%20book%20an%20appointment%20but%20the%20calendar%20isn%27t%20loading." target="_blank">book via WhatsApp</a>.
+          </p>
         </div>
       </div>
     </section>
@@ -179,6 +211,8 @@
     <a href="tel:+254702555093">🚨 24/7 Emergency Call</a>
   </div>
 
+  <!-- Calendly script placed at the end of body -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <script src="script.js"></script>
 </body>
 </html>

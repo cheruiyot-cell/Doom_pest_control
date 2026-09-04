@@ -27,7 +27,7 @@ if (darkToggle) {
   });
 }
 
-// ===== FAQ Accordion =====
+// ===== FAQ Accordion (if present on other pages) =====
 document.querySelectorAll('.faq-question').forEach(question => {
   question.addEventListener('click', () => {
     const faqItem = question.parentElement;
@@ -90,21 +90,38 @@ const formSuccess = document.getElementById('formSuccess');
 if (bookingForm) {
   bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const estate = document.getElementById('estate').value.trim();
     const pest = document.getElementById('pest').value;
+    const area = document.getElementById('area').value;
+    const date = document.getElementById('date').value;
+    const message = document.getElementById('message').value.trim();
 
+    // Basic validation
     if (!name || !phone || !estate || !pest) {
       alert('Please fill in all required fields.');
       return;
     }
 
-    const message = `Hello DOOM Pest Control!%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Estate:* ${encodeURIComponent(estate)}%0A*Pest:* ${encodeURIComponent(pest)}`;
-    const waUrl = `https://wa.me/254702555093?text=${message}`;
+    // Build WhatsApp message
+    let waMessage = `Hello DOOM Pest Control!%0A%0A`;
+    waMessage += `*Name:* ${encodeURIComponent(name)}%0A`;
+    waMessage += `*Phone:* ${encodeURIComponent(phone)}%0A`;
+    waMessage += `*Estate:* ${encodeURIComponent(estate)}%0A`;
+    waMessage += `*Pest:* ${encodeURIComponent(pest)}%0A`;
+    if (area) waMessage += `*Area:* ${encodeURIComponent(area)}%0A`;
+    if (date) waMessage += `*Preferred Date:* ${encodeURIComponent(date)}%0A`;
+    if (message) waMessage += `*Message:* ${encodeURIComponent(message)}%0A`;
 
+    const waUrl = `https://wa.me/254702555093?text=${waMessage}`;
+
+    // Hide form and show success message
     bookingForm.style.display = 'none';
     formSuccess.style.display = 'block';
+
+    // Open WhatsApp in a new tab
     window.open(waUrl, '_blank');
   });
 }
@@ -130,4 +147,32 @@ function calculateQuote() {
   const base = parseFloat(pest);
   const total = Math.round(base * size * severity);
   document.getElementById('calc-result').innerHTML = 'Estimated: KSh ' + total.toLocaleString() + '<br><small>Final quote after free inspection.</small>';
+}
+
+// ===== Calendly Loading Indicator =====
+const calendlyWidget = document.querySelector('.calendly-inline-widget');
+const calendlyLoading = document.getElementById('calendly-loading');
+
+if (calendlyWidget && calendlyLoading) {
+  // Use MutationObserver to detect when the iframe is injected
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length > 0) {
+        // Check if an iframe exists inside the widget
+        if (calendlyWidget.querySelector('iframe')) {
+          calendlyLoading.style.display = 'none';
+          observer.disconnect();
+        }
+      }
+    });
+  });
+
+  observer.observe(calendlyWidget, { childList: true, subtree: true });
+
+  // Fallback: hide loading after 10 seconds even if iframe is not detected
+  setTimeout(() => {
+    if (!calendlyWidget.querySelector('iframe')) {
+      calendlyLoading.innerHTML = '<p>The booking calendar could not load. Please use the WhatsApp link below.</p>';
+    }
+  }, 10000);
 }
