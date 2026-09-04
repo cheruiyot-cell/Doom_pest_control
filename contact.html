@@ -1,168 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Book | DOOM Pest Control Nairobi</title>
-    <meta name="description" content="Book a pest control inspection in Nairobi. Get a free quote. Call, WhatsApp, or use our online form.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Book | DOOM Pest Control Nairobi</title>
+  <meta name="description" content="Book a pest control inspection in Nairobi. Get a free quote. Call, WhatsApp, or use our online form or calendar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-    <header class="site-header" id="siteHeader">
-        <div class="container header-inner">
-            <a href="index.html" class="logo">DOOM<span> Pest Control</span></a>
-            <nav class="main-nav" id="mainNav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="areas.html">Areas</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
-                    <li><a href="contact.html" class="btn btn-nav active">Book Now</a></li>
-                </ul>
-            </nav>
-            <div class="header-actions">
-                <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">🌙</button>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="page-hero reveal">
-            <div class="container">
-                <h1>Book Your Pest Control Service</h1>
-                <p>Fill out the form or WhatsApp us. We respond within 30 minutes during business hours.</p>
-            </div>
-        </section>
-
-        <section class="section contact-section">
-            <div class="container contact-grid reveal">
-                <div class="contact-form">
-                    <h2>Request a Free Quote</h2>
-                    <form id="bookingForm">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone / WhatsApp *</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="estate">Neighbourhood / Estate *</label>
-                            <input type="text" id="estate" name="estate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="pest">Pest Problem *</label>
-                            <select id="pest" name="pest" required>
-                                <option value="">Select pest...</option>
-                                <option value="Cockroaches">Cockroaches</option>
-                                <option value="Rats">Rats & Mice</option>
-                                <option value="Bedbugs">Bedbugs</option>
-                                <option value="Termites">Termites</option>
-                                <option value="Mosquitoes">Mosquitoes</option>
-                                <option value="Ants">Ants / Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="area">Service Area</label>
-                            <select id="area" name="area">
-                                <option value="">Select your area...</option>
-                                <option value="Westlands">Westlands</option>
-                                <option value="Kilimani">Kilimani</option>
-                                <option value="Kileleshwa">Kileleshwa</option>
-                                <option value="Runda">Runda</option>
-                                <option value="Karen">Karen</option>
-                                <option value="Langata">Langata</option>
-                                <option value="South C">South C</option>
-                                <option value="Eastlands">Eastlands</option>
-                                <option value="Buruburu">Buruburu</option>
-                                <option value="Roysambu">Roysambu</option>
-                                <option value="Thika Road">Thika Road</option>
-                                <option value="Ruaka">Ruaka</option>
-                                <option value="Kikuyu">Kikuyu</option>
-                                <option value="Ngong Road">Ngong Road</option>
-                                <option value="Other">Other (please specify in message)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Preferred Date</label>
-                            <input type="date" id="date" name="date">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message (optional)</label>
-                            <textarea id="message" name="message" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit Booking</button>
-                    </form>
-                    <div id="formSuccess" class="form-success" style="display:none;">
-                        <p>Thank you! Your request has been received. We'll contact you shortly.</p>
-                    </div>
-                </div>
-                <div class="contact-info">
-                    <h3>Other Ways to Reach Us</h3>
-                    <p>📞 <a href="tel:+254702555093">+254 702 555 093</a></p>
-                    <p>💬 <a href="https://wa.me/254702555093?text=Hello%2C%20I%20need%20pest%20control%20service" target="_blank">WhatsApp Us</a></p>
-                    <p>✉️ info@doompestcontrol.co.ke</p>
-                    <p>🕒 Mon-Sat: 8:00 AM - 7:00 PM</p>
-
-                    <h4>What Happens Next?</h4>
-                    <ol>
-                        <li>We call you within 30 minutes during business hours.</li>
-                        <li>We confirm a free inspection or send a quote.</li>
-                        <li>We book a convenient treatment time.</li>
-                        <li>We treat and follow up.</li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div>
-                <h3>DOOM Pest Control</h3>
-                <p>Professional pest control for homes and businesses in Nairobi.</p>
-            </div>
-            <div>
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="areas.html">Areas</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Contact</h4>
-                <p>📞 <a href="tel:+254702555093">+254 702 555 093</a></p>
-                <p>💬 <a href="https://wa.me/254702555093">WhatsApp Us</a></p>
-                <p>✉️ info@doompestcontrol.co.ke</p>
-            </div>
-        </div>
-        <div class="container copyright">
-            <p>&copy; 2025 DOOM Pest Control. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <div class="mobile-cta">
-        <a href="tel:+254702555093" class="btn btn-call">📞 Call Now</a>
-        <a href="https://wa.me/254702555093?text=Hello%2C%20I%20need%20pest%20control%20service" class="btn btn-whatsapp">💬 WhatsApp</a>
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">DOOM<span> Pest Control</span></a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="areas.html">Areas</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html" class="btn btn-nav active">Book Now</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="dark-toggle" id="darkToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+  <main>
+    <section class="page-hero reveal">
+      <div class="container">
+        <h1>Book Your Pest Control Service</h1>
+        <p>Fill out the form, book directly with our calendar, or WhatsApp us. We respond within 30 minutes during business hours.</p>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="section contact-section">
+      <div class="container contact-grid reveal">
+        <div class="contact-form">
+          <h2>Request a Free Quote</h2>
+          <form id="bookingForm">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp *</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="estate">Neighbourhood / Estate *</label>
+              <input type="text" id="estate" name="estate" required>
+            </div>
+            <div class="form-group">
+              <label for="pest">Pest Problem *</label>
+              <select id="pest" name="pest" required>
+                <option value="">Select pest...</option>
+                <option value="Cockroaches">Cockroaches</option>
+                <option value="Rats">Rats & Mice</option>
+                <option value="Bedbugs">Bedbugs</option>
+                <option value="Termites">Termites</option>
+                <option value="Mosquitoes">Mosquitoes</option>
+                <option value="Ants">Ants / Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="area">Service Area</label>
+              <select id="area" name="area">
+                <option value="">Select your area...</option>
+                <option value="Westlands">Westlands</option>
+                <option value="Kilimani">Kilimani</option>
+                <option value="Kileleshwa">Kileleshwa</option>
+                <option value="Runda">Runda</option>
+                <option value="Karen">Karen</option>
+                <option value="Langata">Langata</option>
+                <option value="South C">South C</option>
+                <option value="Eastlands">Eastlands</option>
+                <option value="Buruburu">Buruburu</option>
+                <option value="Roysambu">Roysambu</option>
+                <option value="Thika Road">Thika Road</option>
+                <option value="Ruaka">Ruaka</option>
+                <option value="Kikuyu">Kikuyu</option>
+                <option value="Ngong Road">Ngong Road</option>
+                <option value="Other">Other (please specify in message)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+              <label for="message">Message (optional)</label>
+              <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Booking</button>
+          </form>
+          <div id="formSuccess" class="form-success" style="display:none;">
+            <p>Thank you! Your request has been received. We'll contact you shortly.</p>
+          </div>
+        </div>
+        <div class="contact-info">
+          <h3>Other Ways to Reach Us</h3>
+          <p>📞 <a href="tel:+254702555093">+254 702 555 093</a></p>
+          <p>💬 <a href="https://wa.me/254702555093?text=Hello%2C%20I%20need%20pest%20control%20service" target="_blank">WhatsApp Us</a></p>
+          <p>✉️ info@doompestcontrol.co.ke</p>
+          <p>🕒 Mon-Sat: 8:00 AM - 7:00 PM</p>
+
+          <h4>What Happens Next?</h4>
+          <ol>
+            <li>We call you within 30 minutes during business hours.</li>
+            <li>We confirm a free inspection or send a quote.</li>
+            <li>We book a convenient treatment time.</li>
+            <li>We treat and follow up.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calendly Booking -->
+    <section class="section calendly-section">
+      <div class="container reveal">
+        <div class="calendly-widget">
+          <h3>Book an Appointment Directly</h3>
+          <p>Pick a date and time that works for you – no phone call needed.</p>
+          <div class="calendly-inline-widget" data-url="https://calendly.com/harrisoncheruiyot04/30min" style="min-width:320px;height:700px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>DOOM Pest Control</h3>
+        <p>Professional pest control for homes and businesses in Nairobi.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="areas.html">Areas</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>📞 <a href="tel:+254702555093">+254 702 555 093</a></p>
+        <p>💬 <a href="https://wa.me/254702555093">WhatsApp Us</a></p>
+        <p>✉️ info@doompestcontrol.co.ke</p>
+      </div>
+    </div>
+    <div class="container copyright">
+      <p>&copy; 2025 DOOM Pest Control. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="mobile-cta">
+    <a href="tel:+254702555093" class="btn btn-call">📞 Call Now</a>
+    <a href="https://wa.me/254702555093?text=Hello%2C%20I%20need%20pest%20control%20service" class="btn btn-whatsapp">💬 WhatsApp</a>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" type="button" aria-label="Scroll to top">↑</button>
+
+  <div class="emergency-badge" id="emergencyBadge">
+    <a href="tel:+254702555093">🚨 24/7 Emergency Call</a>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
